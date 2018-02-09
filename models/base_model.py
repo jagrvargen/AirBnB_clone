@@ -20,4 +20,17 @@ class BaseModel():
 
     def __str__(self):
         """string representation of base_model object"""
-        pass
+        return "[{}] ({}) {}".format(self.__class__.__name__, self.id, self.__dict__)
+
+    def save(self):
+        """updates the updated_at with current datetime"""
+        self.updated_at = datetime.now()
+
+    def to_dict(self):
+        """Creates a dictionary from a BaseModel instance."""
+        attr_dict = {'__class__':self.__class__.__name__}
+        for key, value in self.__dict__.items():
+            if key == self.created_at or key == self.updated_at:
+                key.isoformat()
+            attr_dict[key] = value
+        return attr_dict

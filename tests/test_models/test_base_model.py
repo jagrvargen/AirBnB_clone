@@ -44,9 +44,23 @@ class TestBaseModel(unittest.TestCase):
     def test_base_str(self):
         """Test the __str__ method for BaseModel"""
         base = BaseModel()
-        t1 = base.__name__
+        t1 = base.__class__.__name__
         t2 = base.id
         t3 = base.__dict__
-        self.assertIsInstance(base.t1, str)
-        self.assertIsInstance(base.t2, str)
-        self.assertDictEqual(base.t3, base.__dict__)
+        self.assertIsInstance(t1, str)
+        self.assertIsInstance(t2, str)
+        self.assertDictEqual(t3, base.__dict__)
+
+    def test_save(self):
+        """updates public instnace updated_at with current datetime"""
+        base = BaseModel()
+        id1 = base.updated_at
+        base.save()
+        self.assertNotEqual(id1, base.updated_at)
+
+    def test_to_dict(self):
+        """returns a dict containing all keys/values of instance.__dict__"""
+        base = BaseModel()
+        b1 = base.to_dict()
+        base.__dict__['__class__'] = base.__class__.__name__
+        self.assertDictEqual(b1, base.__dict__)
