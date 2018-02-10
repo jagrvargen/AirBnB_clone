@@ -58,9 +58,31 @@ class TestBaseModel(unittest.TestCase):
         base.save()
         self.assertNotEqual(id1, base.updated_at)
 
-    def test_to_dict(self):
-        """returns a dict containing all keys/values of instance.__dict__"""
+    def test_is_instance_dict(self):
+        """Check that to_dict returns an instance if a dict."""
         base = BaseModel()
         b1 = base.to_dict()
-        base.__dict__['__class__'] = base.__class__.__name__
-        self.assertDictEqual(b1, base.__dict__)
+        self.assertIsInstance(b1, dict)
+
+    def test_to_dict_datetime(self):
+        """tests that datetime is converted to string"""
+        base = BaseModel()
+        b1 = base.to_dict()
+        created = b1["created_at"]
+        updated = b1["updated_at"]
+        self.assertIsInstance(created, str)
+        self.assertIsInstance(updated, str)
+
+    def test_to_dict_class_string(self):
+        """tests that __class__ is inserted using to_dict"""
+        base = BaseModel()
+        b1 = base.to_dict()
+        test = b1["__class__"]
+        self.assertIsInstance(test, str)
+
+    def test_basemodel_from_dict(self):
+        """test the recreation of instance with dict representation"""
+        base = BaseModel()
+        test = base.to_dict()
+        base2 = BaseModel(**test)
+        self.assertDictEqual(base.__dict__, base2.__dict__)
