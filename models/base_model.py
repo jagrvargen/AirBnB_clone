@@ -18,11 +18,11 @@ class BaseModel():
             for key, value in kwargs.items():
                 if key == "created_at":
                     temp = datetime.strptime(value,
-                        '%Y-%m-%dT%H:%M:%S.%f')
+                                             '%Y-%m-%dT%H:%M:%S.%f')
                     setattr(self, key, temp)
                 elif key == "updated_at":
                     temp = datetime.strptime(value,
-                        '%Y-%m-%dT%H:%M:%S.%f')
+                                             '%Y-%m-%dT%H:%M:%S.%f')
                     setattr(self, key, temp)
                 elif key == "__class__":
                     pass
@@ -44,6 +44,7 @@ class BaseModel():
     def save(self):
         """updates the updated_at with current datetime"""
         self.updated_at = datetime.now()
+        storage.new(self)
         storage.save()
 
     def to_dict(self):
