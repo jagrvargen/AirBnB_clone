@@ -2,6 +2,7 @@
 """Module for file storage"""
 import json
 
+
 class FileStorage():
     """
     FileStorage - class in charge of serializing and deserializing files
@@ -18,19 +19,25 @@ class FileStorage():
         """set entries in dict __objects with key <obj class name>.id"""
         new_dict = obj.to_dict()
         new_key = obj.__class__.__name__ + "." + obj.id
-        self.__objects[new_key] = new_dict
+        #self.__objects[new_key] = new_dict
+        self.__objects[new_key] = obj
 
     def save(self):
         """serializes __objects to the JSON file (path: __file path)"""
+        temp = {}
         with open(self.__file_path, "w", encoding="utf-8") as fp:
-            json.dump(self.__objects, fp)
+            for key, value in self.__objects.items():
+                temp[key] = value.to_dict()
+            json.dump(temp, fp)
+            # TODO will this work for multiple objects?
 
     def reload(self):
         """deserializes the JSON file to __objects (only if file exists"""
         try:
             with open(self.__file_path, 'r', encoding="utf-8") as fp:
                 d = json.load(fp)
+            from models.base_model import BaseModel
             for key, value in d.items():
-                self.__objects[key] = value
+                self.__objects[key] = BaseModel(**value)
         except FileNotFoundError as error:
-            print(error)
+            pass
