@@ -64,6 +64,28 @@ class HBNBCommand(cmd.Cmd):
                 except:
                     print("** no instance found **")
 
+    def do_all(self, arg):
+        """Prints the string representation of an instance."""
+        jesse = parse(arg)
+        if jesse and not instance_list(jesse[0]):
+            print("** class doesn't exist **")
+        if jesse and instance_list(jesse[0]):
+            name = jesse[0]
+            store = FileStorage()
+            obj = store.all()
+            arg_len = len(name)
+            for key, value in obj.items():
+                if key[:arg_len] == name:
+                    print(obj[key])
+        else:
+            store = FileStorage()
+            obj = store.all()
+            print(obj)
+
+    def do_update(self, arg):
+        """update instance based on the class name and id"""
+        pass
+
     def do_quit(self, arg):
         """Quit out of the command interpreter."""
         return True
