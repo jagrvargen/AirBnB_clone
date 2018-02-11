@@ -4,6 +4,8 @@
 """
 import cmd
 from models.base_model import BaseModel
+from models.engine.file_storage import FileStorage
+
 
 class HBNBCommand(cmd.Cmd):
     """This is the class definition of the command interpreter."""
@@ -22,6 +24,26 @@ class HBNBCommand(cmd.Cmd):
             except:
                 print("** class doesn't exist **")
 
+    def do_show(self, arg):
+        """Prints the string representation of an instance."""
+        if not arg:
+            print("** class name missing **")
+        else:
+            jesse = parse(arg)
+            if not instance_list(jesse[0]):
+                print("** class doesn't exist **")
+            try:
+                len(jesse) > 2
+            except:
+                print("** instance id missing **")
+            try:
+                store = FileStorage()
+                obj = store.all()
+                key = jesse[0] + "." + jesse[1]
+                print(obj[key])
+            except:
+                print("** no instance found **")
+
     def do_quit(self, arg):
         """Quit out of the command interpreter."""
         return True
@@ -30,6 +52,18 @@ class HBNBCommand(cmd.Cmd):
         """Quit out of the command interpreter with EOF"""
         print()
         return True
+
+
+def parse(arg):
+    """Parse the string passed to a command"""
+    return(tuple(map(str, arg.split())))
+
+
+def instance_list(arg):
+    """Master list of all instance types"""
+    master_list = ["BaseModel"]
+    if arg not in master_list:
+        return False
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
