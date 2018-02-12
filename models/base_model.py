@@ -6,6 +6,7 @@ import uuid
 from datetime import datetime
 import models
 
+
 class BaseModel():
     """
        This is the class definition of the Base Model from which all objects in
@@ -44,7 +45,6 @@ class BaseModel():
         """string representation of base_model object for devs"""
         return "[{}] ({}) {}".format(self.__class__.__name__, self.id,
                                      self.__dict__)
-
 
     def save(self):
         """updates the updated_at with current datetime"""
