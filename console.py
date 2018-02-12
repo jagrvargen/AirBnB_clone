@@ -17,6 +17,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
         else:
             try:
+                #TODO update this to usr instance_list() method
                 a = arg + "()"
                 new = eval(a)
                 new.save()
@@ -32,17 +33,16 @@ class HBNBCommand(cmd.Cmd):
             jesse = parse(arg)
             if not instance_list(jesse[0]):
                 print("** class doesn't exist **")
-            try:
-                len(jesse) > 2
-            except:
+            elif len(jesse) < 2:
                 print("** instance id missing **")
-            try:
-                store = FileStorage()
-                obj = store.all()
-                key = jesse[0] + "." + jesse[1]
-                print(obj[key])
-            except:
-                print("** no instance found **")
+            else:
+                try:
+                    store = FileStorage()
+                    obj = store.all()
+                    key = jesse[0] + "." + jesse[1]
+                    print(obj[key])
+                except:
+                    print("** no instance found **")
 
     def do_destroy(self, arg):
         """deletes an instance based on the class name and id"""
@@ -69,14 +69,17 @@ class HBNBCommand(cmd.Cmd):
         jesse = parse(arg)
         if jesse and not instance_list(jesse[0]):
             print("** class doesn't exist **")
-        if jesse and instance_list(jesse[0]):
+        elif jesse and instance_list(jesse[0]):
             name = jesse[0]
+            return_list = []
             store = FileStorage()
             obj = store.all()
             arg_len = len(name)
             for key, value in obj.items():
                 if key[:arg_len] == name:
-                    print(obj[key])
+                    return_list.append(value)
+            for i in return_list:
+                print(i)
         else:
             store = FileStorage()
             obj = store.all()
@@ -84,7 +87,31 @@ class HBNBCommand(cmd.Cmd):
 
     def do_update(self, arg):
         """update instance based on the class name and id"""
-        pass
+        # TODO created_at, update_at, id may need to be protected
+        # TODO if the tests try to change these values
+        store = FileStorage()
+        obj = store.all()
+        key = ""
+        if not arg:
+            print("** class name missing **")
+        else:
+            jesse = parse(arg)
+            if not instance_list(jesse[0]):
+                print("** class doesn't exist **")
+            elif len(jesse) < 2:
+                print("** instance id missing **")
+            key = jesse[0] + "." + jesse[1] 
+            if len(jesse) < 4 and len(jesse) > 2:
+                if key in obj:
+                    print("** attribute name missing **")
+                else:
+                    print("** no instance found **")
+            else:
+                if key not in obj:
+                    print("** no instance found **")
+                else:
+                    setattr(obj[key], jesse[2], jesse[3])
+                    obj[key].save()
 
     def do_quit(self, arg):
         """Quit out of the command interpreter."""
