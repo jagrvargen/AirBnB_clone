@@ -135,7 +135,8 @@ def parse(arg):
 
 def instance_list(arg):
     """Master list of all instance types"""
-    master_list = ["BaseModel", "User", "State", "City"]
+    master_list = ["BaseModel", "User", "State", "City", "Amenity", "Place",
+                   "Review"]
     if arg not in master_list:
         return False
     else:

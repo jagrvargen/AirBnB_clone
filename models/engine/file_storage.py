@@ -38,5 +38,6 @@ class FileStorage():
             for key, value in d.items():
                 class_key = value["__class__"]
                 models.c_manager[class_key](**value)
+                self.__objects[key] = models.c_manager[class_key](**value)
         except FileNotFoundError as error:
             pass
