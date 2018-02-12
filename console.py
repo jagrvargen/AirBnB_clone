@@ -125,10 +125,9 @@ class HBNBCommand(cmd.Cmd):
         print()
         return True
 
-
-def emptyline():
-    """ignores an empty line"""
-    pass
+    def emptyline(self):
+        """ignores an empty line"""
+        pass
 
 
 def parse(arg):
