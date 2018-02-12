@@ -4,6 +4,7 @@
 """
 import cmd
 from models.base_model import BaseModel
+from models.user import User
 from models.engine.file_storage import FileStorage
 
 
@@ -99,7 +100,7 @@ class HBNBCommand(cmd.Cmd):
                 print("** class doesn't exist **")
             elif len(jesse) < 2:
                 print("** instance id missing **")
-            key = jesse[0] + "." + jesse[1] 
+            key = jesse[0] + "." + jesse[1]
             if len(jesse) < 4 and len(jesse) > 2:
                 if key in obj:
                     print("** attribute name missing **")
@@ -129,7 +130,7 @@ def parse(arg):
 
 def instance_list(arg):
     """Master list of all instance types"""
-    master_list = ["BaseModel"]
+    master_list = ["BaseModel", "User"]
     if arg not in master_list:
         return False
     else:

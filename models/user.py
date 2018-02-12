@@ -14,4 +14,4 @@ class User(BaseModel):
         self.password = ""
         self.first_name = ""
         self.last_name = ""
-        super().__init__(self)
+        super().__init__(**kwargs)
