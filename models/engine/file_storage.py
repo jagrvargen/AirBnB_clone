@@ -29,7 +29,6 @@ class FileStorage():
             for key, value in self.__objects.items():
                 temp[key] = value.to_dict()
             json.dump(temp, fp)
-            # TODO will this work for multiple objects?
 
     def reload(self):
         """deserializes the JSON file to __objects (only if file exists"""
@@ -37,7 +36,11 @@ class FileStorage():
             with open(self.__file_path, 'r', encoding="utf-8") as fp:
                 d = json.load(fp)
             from models.base_model import BaseModel
+            from models.user import User
             for key, value in d.items():
-                self.__objects[key] = BaseModel(**value)
+                if key[0:9] == "BaseModel":
+                    self.__objects[key] = BaseModel(**value)
+                elif key[0:4] == "User":
+                    self.__objects[key] = User(**value)
         except FileNotFoundError as error:
             pass
