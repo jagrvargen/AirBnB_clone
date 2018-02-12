@@ -125,13 +125,16 @@ class HBNBCommand(cmd.Cmd):
         print()
         return True
 
+
 def emptyline():
-    """ignores anempty line"""
+    """ignores an empty line"""
     pass
+
 
 def parse(arg):
     """Parse the string passed to a command"""
     return(tuple(map(str, arg.split())))
+
 
 def instance_list(arg):
     """Master list of all instance types"""
