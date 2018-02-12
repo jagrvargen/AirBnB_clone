@@ -67,23 +67,22 @@ class HBNBCommand(cmd.Cmd):
     def do_all(self, arg):
         """Prints the string representation of an instance."""
         jesse = parse(arg)
+        obj_list = []
         if jesse and not instance_list(jesse[0]):
             print("** class doesn't exist **")
         elif jesse and instance_list(jesse[0]):
             name = jesse[0]
-            return_list = []
             store = FileStorage()
             obj = store.all()
             arg_len = len(name)
             for key, value in obj.items():
                 if key[:arg_len] == name:
-                    return_list.append(value)
-            for i in return_list:
-                print(i)
+                    print([x for x in data])
         else:
             store = FileStorage()
             obj = store.all()
-            print(obj)
+            for key, value in obj.items():
+                print(value)
 
     def do_update(self, arg):
         """update instance based on the class name and id"""
