@@ -77,7 +77,7 @@ class HBNBCommand(cmd.Cmd):
             arg_len = len(name)
             for key, value in obj.items():
                 if key[:arg_len] == name:
-                    print([x for x in data])
+                    print(value)
         else:
             store = FileStorage()
             obj = store.all()
