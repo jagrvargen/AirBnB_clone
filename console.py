@@ -3,9 +3,8 @@
    This module contains the entry point into the AirBnB command interpreter.
 """
 import cmd
-from models.base_model import BaseModel
-from models.user import User
 from models.engine.file_storage import FileStorage
+import models
 
 
 class HBNBCommand(cmd.Cmd):
@@ -18,9 +17,11 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
         else:
             try:
-                #TODO update this to usr instance_list() method
-                a = arg + "()"
-                new = eval(a)
+                #a = arg + "()"
+                #new = eval(a)
+                #new.save()
+                #print(new.id)
+                new = models.c_manager[arg]()
                 new.save()
                 print(new.id)
             except:
@@ -78,12 +79,14 @@ class HBNBCommand(cmd.Cmd):
             arg_len = len(name)
             for key, value in obj.items():
                 if key[:arg_len] == name:
-                    print(value)
+                    obj_list.append(value)
+            print(obj_list)
         else:
             store = FileStorage()
             obj = store.all()
             for key, value in obj.items():
-                print(value)
+                obj_list.append(value)
+            print(obj_list)
 
     def do_update(self, arg):
         """update instance based on the class name and id"""
@@ -122,15 +125,17 @@ class HBNBCommand(cmd.Cmd):
         print()
         return True
 
+def emptyline():
+    """ignores anempty line"""
+    pass
 
 def parse(arg):
     """Parse the string passed to a command"""
     return(tuple(map(str, arg.split())))
 
-
 def instance_list(arg):
     """Master list of all instance types"""
-    master_list = ["BaseModel", "User"]
+    master_list = ["BaseModel", "User", "State", "City"]
     if arg not in master_list:
         return False
     else:
