@@ -5,6 +5,7 @@
 import cmd
 from models.engine.file_storage import FileStorage
 import models
+import shlex
 
 
 class HBNBCommand(cmd.Cmd):
@@ -17,10 +18,6 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
         else:
             try:
-                #a = arg + "()"
-                #new = eval(a)
-                #new.save()
-                #print(new.id)
                 new = models.c_manager[arg]()
                 new.save()
                 print(new.id)
@@ -98,7 +95,9 @@ class HBNBCommand(cmd.Cmd):
         if not arg:
             print("** class name missing **")
         else:
-            jesse = parse(arg)
+            #jesse = parse(arg)
+            jesse = shlex.split(arg)
+            #arg = shlex.split(arg)
             if not instance_list(jesse[0]):
                 print("** class doesn't exist **")
             elif len(jesse) < 2:
@@ -128,6 +127,10 @@ class HBNBCommand(cmd.Cmd):
     def emptyline(self):
         """ignores an empty line"""
         pass
+
+    #def precmd(self, line):
+    #    """checks commands for different type"""
+    #    pass
 
 
 def parse(arg):
