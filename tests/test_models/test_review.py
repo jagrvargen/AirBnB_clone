@@ -31,7 +31,6 @@ class TestReview(unittest.TestCase):
         self.assertIsInstance(base.user_id, str)
         self.assertTrue(hasattr(base, "user_id"))
 
-
     def test_review_has_text(self):
         """check if review has text"""
         base = Review()
