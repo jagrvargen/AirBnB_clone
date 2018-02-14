@@ -22,54 +22,55 @@ class TestPlace(unittest.TestCase):
     def test_place_has_cityid(self):
         """checks for city_id"""
         base = Place()
-        self.assertTrue(hasattr(base, "city_id"))
+        self.assertIsInstance(base.city_id, str))
 
     def test_place_has_userid(self):
         """checks for user_id"""
         base = Place()
-        self.assertTrue(hasattr(base, "user_id"))
+        self.assertIsInstance(base.user_id, str))
 
     def test_place_has_name(self):
         """checks for name"""
         base = Place()
-        self.assertTrue(hasattr(base, "name"))
+        self.assertIsInstance(base.name, str))
 
     def test_place_has_description(self):
         """checks for description"""
         base = Place()
-        self.assertTrue(hasattr(base, "description"))
+        self.assertIsInstance(base.description, str))
 
     def test_place_has_numberroom(self):
         """checks for number_room"""
         base = Place()
-        self.assertTrue(hasattr(base, "number_rooms"))
+        self.assertIsInstance(base.number_rooms, int))
 
     def test_place_has_numberbath(self):
         """checks for numbers_bathrooms"""
         base = Place()
-        self.assertTrue(hasattr(base, "number_bathrooms"))
+        self.assertIsInstance(base.number_bathrooms, int))
 
     def test_place_has_maxguest(self):
         """checks for max_guest"""
         base = Place()
-        self.assertTrue(hasattr(base, "max_guest"))
+        self.assertIsInstance(base.max_guest, int))
 
     def test_place_has_pricenight(self):
         """checks for price_by_night"""
         base = Place()
-        self.assertTrue(hasattr(base, "price_by_night"))
+        self.assertIsInstance(base.price-by_night, int))
 
     def test_place_has_latitude(self):
         """checks for latitude"""
         base = Place()
+        self.assertIsInstance(base.latitude, float))
         self.assertTrue(hasattr(base, "latitude"))
 
     def test_place_has_longitude(self):
         """checks for longitude"""
         base = Place()
-        self.assertTrue(hasattr(base, "longitude"))
+        self.assertIsInstance(base.longitude, float))
 
     def test_place_has_amenityid(self):
         """checks for amenity_ids"""
         base = Place()
-        self.assertTrue(hasattr(base, "amenity_ids"))
+        self.assertIsInstance(base.amenity_ids, list))

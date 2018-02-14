@@ -22,4 +22,4 @@ class TestAmenity(unittest.TestCase):
     def test_amentiy_has_name(self):
         """make sure Amenity has name"""
         base = Amenity()
-        self.assertTrue(hasattr(base, "name"))
+        self.assertIsInstance(base.name, str))
