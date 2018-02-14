@@ -26,13 +26,13 @@ class HBNBCommand(cmd.Cmd):
 
     def do_show(self, arg):
         """Prints the string representation of an instance."""
+        jesse = shlex.split(arg)
         if not arg:
             print("** class name missing **")
         else:
-            jesse = shlex.split(arg)
             if jesse[0] not in models.c_manager:
                 print("** class doesn't exist **")
-            elif len(jesse) < 2:
+            elif len(jesse) == 1:
                 print("** instance id missing **")
             else:
                 try:
@@ -69,18 +69,16 @@ class HBNBCommand(cmd.Cmd):
         obj_list = []
         store = FileStorage()
         obj = store.all()
-        if jesse[0] not in models.c_manager:
-            print("** class doesn't exist **")
-        elif jesse and jesse[0] in models.c_manager:
-            name = jesse[0]
-            arg_len = len(name)
-            for key, value in obj.items():
-                if key[:arg_len] == name:
-                    obj_list.append(value)
-            print(obj_list)
-        else:
+        if len(jesse) == 0:
             for key, value in obj.items():
                 obj_list.append(value)
+            print(obj_list)
+        elif jesse[0] not in models.c_manager:
+            print("** class doesn't exist **")
+        else:
+            for key, value in obj.items():
+                if jesse[0] in key:
+                    obj_list.append(value)
             print(obj_list)
 
     def do_update(self, arg):
