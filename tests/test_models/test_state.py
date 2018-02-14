@@ -22,3 +22,4 @@ class TestState(unittest.TestCase):
         """checks if state has name attribute"""
         base = State()
         self.assertTrue(hasattr(base, "name"))
+        self.assertIsInstance(base.name, str)
