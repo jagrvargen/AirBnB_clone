@@ -29,8 +29,8 @@ class HBNBCommand(cmd.Cmd):
         if not arg:
             print("** class name missing **")
         else:
-            jesse = parse(arg)
-            if not instance_list(jesse[0]):
+            jesse = shlex.split(arg)
+            if jesse[0] not in models.c_manager:
                 print("** class doesn't exist **")
             elif len(jesse) < 2:
                 print("** instance id missing **")
@@ -48,8 +48,8 @@ class HBNBCommand(cmd.Cmd):
         if not arg:
             print("** class name missing **")
         else:
-            jesse = parse(arg)
-            if not instance_list(jesse[0]):
+            jesse = shlex.split(arg)
+            if jesse[0] not in models.c_manager:
                 print("** class doesn't exist **")
             elif len(jesse) != 2:
                 print("** instance id missing **")
@@ -65,43 +65,36 @@ class HBNBCommand(cmd.Cmd):
 
     def do_all(self, arg):
         """Prints the string representation of an instance."""
-        jesse = parse(arg)
+        jesse = shlex.split(arg)
         obj_list = []
-        if jesse and not instance_list(jesse[0]):
+        store = FileStorage()
+        obj = store.all()
+        if jesse[0] not in models.c_manager:
             print("** class doesn't exist **")
-        elif jesse and instance_list(jesse[0]):
+        elif jesse and jesse[0] in models.c_manager:
             name = jesse[0]
-            store = FileStorage()
-            obj = store.all()
             arg_len = len(name)
             for key, value in obj.items():
                 if key[:arg_len] == name:
                     obj_list.append(value)
             print(obj_list)
         else:
-            store = FileStorage()
-            obj = store.all()
             for key, value in obj.items():
                 obj_list.append(value)
             print(obj_list)
 
     def do_update(self, arg):
         """update instance based on the class name and id"""
-        # TODO created_at, update_at, id may need to be protected
-        # TODO if the tests try to change these values
-        store = FileStorage()
-        obj = store.all()
-        key = ""
-        if not arg:
+        jesse = shlex.split(arg)
+        if len(arg) == 0:
             print("** class name missing **")
+        elif jesse[0] not in models.c_manager:
+            print("** class doesn't exist **")
+        elif len(jesse) == 1:
+            print("** instance id missing **")
         else:
-            #jesse = parse(arg)
-            jesse = shlex.split(arg)
-            #arg = shlex.split(arg)
-            if not instance_list(jesse[0]):
-                print("** class doesn't exist **")
-            elif len(jesse) < 2:
-                print("** instance id missing **")
+            store = FileStorage()
+            obj = store.all()
             key = jesse[0] + "." + jesse[1]
             if len(jesse) < 4 and len(jesse) > 2:
                 if key in obj:
@@ -131,21 +124,6 @@ class HBNBCommand(cmd.Cmd):
     #def precmd(self, line):
     #    """checks commands for different type"""
     #    pass
-
-
-def parse(arg):
-    """Parse the string passed to a command"""
-    return(tuple(map(str, arg.split())))
-
-
-def instance_list(arg):
-    """Master list of all instance types"""
-    master_list = ["BaseModel", "User", "State", "City", "Amenity", "Place",
-                   "Review"]
-    if arg not in master_list:
-        return False
-    else:
-        return True
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
