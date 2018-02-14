@@ -29,27 +29,32 @@ class TestUser(unittest.TestCase):
         """checks for first_name attribute"""
         base = User()
         self.assertTrue(hasattr(base, "first_name"))
+        self.assertIsInstance(base.first_name, str)
 
     def test_user_has_lastname(self):
         """checks for last_name attribute"""
         base = User()
         self.assertTrue(hasattr(base, "last_name"))
+        self.assertIsInstance(base.last_name, str)
 
     def test_user_has_email(self):
         """checks for email attribute"""
         base = User()
         self.assertTrue(hasattr(base, "email"))
+        self.assertIsInstance(base.email, str)
 
     def test_user_has_password(self):
         """checks for password attribute"""
         base = User()
         self.assertTrue(hasattr(base, "password"))
+        self.assertIsInstance(base.password, str)
 
     def test_create_dict(self):
         """Test that to_dict creates a dictionary."""
         base = User()
         user_dict = base.to_dict()
         self.assertTrue(type(user_dict), dict)
+        self.assertIsInstance(user_dict, dict)
         for attr in base.__dict__:
             self.assertTrue(attr in user_dict)
             self.assertTrue("__class__" in user_dict)
