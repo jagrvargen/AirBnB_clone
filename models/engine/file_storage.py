@@ -20,7 +20,6 @@ class FileStorage():
         """set entries in dict __objects with key <obj class name>.id"""
         new_dict = obj.to_dict()
         new_key = obj.__class__.__name__ + "." + obj.id
-        #self.__objects[new_key] = new_dict
         self.__objects[new_key] = obj
 
     def save(self):
