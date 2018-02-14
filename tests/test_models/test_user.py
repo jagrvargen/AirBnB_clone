@@ -13,7 +13,6 @@ from models.user import User
 
 class TestUser(unittest.TestCase):
     """This class contains unit tests for the User class."""
-
     def test_user_is_instance(self):
         """Set up an instance of a User."""
         base = User()
