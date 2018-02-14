@@ -50,10 +50,7 @@ class TestFileStorage(unittest.TestCase):
         """Test to see that file.json is created"""
         test = FileStorage()
         test.save()
-        try:
-            os.path.exists('file.json')
-        except FileNotFoundError as error:
-            print(error)
+        self.assertEqual(true, os.path.exists('file.json'))
 
     def test_file_storage_save(self):
         """Test to see that file.json is created"""
