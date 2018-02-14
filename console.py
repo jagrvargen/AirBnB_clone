@@ -94,15 +94,13 @@ class HBNBCommand(cmd.Cmd):
             store = FileStorage()
             obj = store.all()
             key = jesse[0] + "." + jesse[1]
-            if len(jesse) < 4 and len(jesse) > 2:
-                if key in obj:
-                    print("** attribute name missing **")
-                else:
-                    print("** no instance found **")
+            if key not in obj:
+                print("** no instance found **")
+            elif len(jesse) == 2:
+                print("** attribute name missing **")
+            elif len(jesse) == 3:
+                print("** value missing **")
             else:
-                if key not in obj:
-                    print("** no instance found **")
-                else:
                     setattr(obj[key], jesse[2], jesse[3])
                     obj[key].save()
 
