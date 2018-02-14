@@ -64,7 +64,6 @@ class TestFileStorage(unittest.TestCase):
         except FileNotFoundError as error:
             print(error)
 
-
     #TODO Look into mocking objects for this test
     def test_file_storage_data_check(self):
         """Test to see JSON data is written as string to file"""

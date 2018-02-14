@@ -8,7 +8,4 @@ from models.base_model import BaseModel
 
 class State(BaseModel):
     """This is the class definition for a State object."""
-    def __init__(self, *args, **kwargs):
-        """Instantiates a state object."""
-        self.name = ""
-        super().__init__(**kwargs)
+    name = ""

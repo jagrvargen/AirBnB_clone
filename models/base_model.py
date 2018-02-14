@@ -16,11 +16,7 @@ class BaseModel():
         """__init__ for base_model object"""
         if kwargs:
             for key, value in kwargs.items():
-                if key == "created_at":
-                    temp = datetime.strptime(value,
-                                             '%Y-%m-%dT%H:%M:%S.%f')
-                    setattr(self, key, temp)
-                elif key == "updated_at":
+                if key == "created_at" or key == "updated_at":
                     temp = datetime.strptime(value,
                                              '%Y-%m-%dT%H:%M:%S.%f')
                     setattr(self, key, temp)
@@ -35,6 +31,7 @@ class BaseModel():
             self.created_at = datetime.utcnow()
             self.updated_at = datetime.utcnow()
             models.storage.new(self)
+            models.storage.save()
 
     def __str__(self):
         """string representation of base_model object"""
