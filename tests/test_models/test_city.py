@@ -23,8 +23,11 @@ class TestCity(unittest.TestCase):
         """check if city has state_id"""
         base = City()
         self.assertIsInstance(base.state_id, str)
+        self.assertTrue(hasattr(base, "state_id"))
+
 
     def test_city_has_name(self):
         """check if city has name"""
         base = City()
         self.assertIsInstance(base.name, str)
+        self.assertTrue(hasattr(base, "name"))
