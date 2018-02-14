@@ -25,20 +25,17 @@ class TestPlace(unittest.TestCase):
         self.assertIsInstance(base.city_id, str)
         self.assertTrue(hasattr(base, "city_id"))
 
-
     def test_place_has_userid(self):
         """checks for user_id"""
         base = Place()
         self.assertIsInstance(base.user_id, str)
         self.assertTrue(hasattr(base, "user_id"))
 
-
     def test_place_has_name(self):
         """checks for name"""
         base = Place()
         self.assertIsInstance(base.name, str)
         self.assertTrue(hasattr(base, "name"))
-
 
     def test_place_has_description(self):
         """checks for description"""
@@ -57,7 +54,6 @@ class TestPlace(unittest.TestCase):
         base = Place()
         self.assertIsInstance(base.number_bathrooms, int)
         self.assertTrue(hasattr(base, "number_bathrooms"))
-
 
     def test_place_has_maxguest(self):
         """checks for max_guest"""
@@ -82,7 +78,6 @@ class TestPlace(unittest.TestCase):
         base = Place()
         self.assertIsInstance(base.longitude, float)
         self.assertTrue(hasattr(base, "longitude"))
-
 
     def test_place_has_amenityid(self):
         """checks for amenity_ids"""
