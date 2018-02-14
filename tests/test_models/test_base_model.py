@@ -44,7 +44,7 @@ class TestBaseModel(unittest.TestCase):
         self.assertIsInstance(base.updated_at, datetime.date)
 
     def test_base_str(self):
-        """Test the __str__ method for BaseModel"""
+        """Test the __str__ method's types"""
         base = BaseModel()
         t1 = base.__class__.__name__
         t2 = base.id
@@ -52,6 +52,12 @@ class TestBaseModel(unittest.TestCase):
         self.assertIsInstance(t1, str)
         self.assertIsInstance(t2, str)
         self.assertDictEqual(t3, base.__dict__)
+
+    def test_base_str_method(self):
+        """Test the __str__ method for BaseModel"""
+        base = BaseModel()
+        test = "[BaseModel] ({}) {}".format(base.id, base.__dict__)
+        self.assertEqual(str(base), test)
 
     def test_save(self):
         """updates public instnace updated_at with current datetime"""
