@@ -23,3 +23,4 @@ class TestAmenity(unittest.TestCase):
         """make sure Amenity has name"""
         base = Amenity()
         self.assertIsInstance(base.name, str)
+        self.assertTrue(hasattr(base, "name"))
