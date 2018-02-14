@@ -22,14 +22,14 @@ class TestReview(unittest.TestCase):
     def test_review_has_placeid(self):
         """check if review has place_id"""
         base = Review()
-        self.assertTrue(hasattr(base, "place_id"))
+        self.assertIsInstance(base.place_id, str))
 
     def test_review_has_userid(self):
         """check if review has user_id"""
         base = Review()
-        self.assertTrue(hasattr(base, "user_id"))
+        self.assertIsInstance(base.user_id, str))
 
     def test_review_has_text(self):
         """check if review has text"""
         base = Review()
-        self.assertTrue(hasattr(base, "text"))
+        self.assertIsInstance(base.text, str))
