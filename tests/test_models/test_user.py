@@ -44,3 +44,12 @@ class TestUser(unittest.TestCase):
         """checks for password attribute"""
         base = User()
         self.assertTrue(hasattr(base, "password"))
+
+    def test_create_dict(self):
+        """Test that to_dict creates a dictionary."""
+        base = User()
+        user_dict = base.to_dict()
+        self.assertTrue(type(user_dict), dict)
+        for attr in base.__dict__:
+            self.assertTrue(attr in user_dict)
+            self.assertTrue("__class__" in user_dict)
