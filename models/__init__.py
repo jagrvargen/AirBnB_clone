@@ -1,3 +1,7 @@
+#!/usr/bin/python3
+"""
+__init__ - manages our modules folder
+"""
 from .engine.file_storage import FileStorage
 from models.base_model import BaseModel
 from models.user import User
