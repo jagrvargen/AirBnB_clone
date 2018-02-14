@@ -25,6 +25,8 @@ class TestBaseModel(unittest.TestCase):
         """Tests if BaseModel instance is created. """
         base = BaseModel()
         self.assertIsInstance(base, BaseModel)
+        self.assertTrue(hasattr(base, "created_at"))
+        self.assertTrue(hasattr(base, "updated_at"))
 
     def test_base_model_id(self):
         """Tests if the id is properly assigned to an instance."""
@@ -79,6 +81,14 @@ class TestBaseModel(unittest.TestCase):
         b1 = base.to_dict()
         test = b1["__class__"]
         self.assertIsInstance(test, str)
+
+    def test_to_dict_output(self):
+        """tests that output written properly using to_dict"""
+        base = BaseModel()
+        b1 = base.to_dict()
+        self.assertIsInstance(b1, dict)
+        self.assertIsInstance(b1["created_at"], str)
+        self.assertIsInstance(b1["updated_at"], str)
 
     def test_basemodel_from_dict(self):
         """test the recreation of instance with dict representation"""
