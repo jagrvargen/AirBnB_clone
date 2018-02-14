@@ -18,6 +18,13 @@ class TestUser(unittest.TestCase):
         base = User()
         self.assertIsInstance(base, User)
 
+    def test_user_verify(self):
+        """Test that User object has id, created_at, updated_at"""
+        base = User()
+        self.assertTrue(hasattr(base, "id"))
+        self.assertTrue(hasattr(base, "created_at"))
+        self.assertTrue(hasattr(base, "updated_at"))
+
     def test_user_has_firstname(self):
         """checks for first_name attribute"""
         base = User()
