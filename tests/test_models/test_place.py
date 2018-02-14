@@ -57,7 +57,7 @@ class TestPlace(unittest.TestCase):
     def test_place_has_pricenight(self):
         """checks for price_by_night"""
         base = Place()
-        self.assertIsInstance(base.price-by_night, int)
+        self.assertIsInstance(base.price_by_night, int)
 
     def test_place_has_latitude(self):
         """checks for latitude"""
