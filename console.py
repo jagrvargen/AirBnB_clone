@@ -101,8 +101,8 @@ class HBNBCommand(cmd.Cmd):
             elif len(jesse) == 3:
                 print("** value missing **")
             else:
-                    setattr(obj[key], jesse[2], jesse[3])
-                    obj[key].save()
+                setattr(obj[key], jesse[2], jesse[3])
+                obj[key].save()
 
     def do_quit(self, arg):
         """Quit out of the command interpreter."""
@@ -116,10 +116,6 @@ class HBNBCommand(cmd.Cmd):
     def emptyline(self):
         """ignores an empty line"""
         pass
-
-    #def precmd(self, line):
-    #    """checks commands for different type"""
-    #    pass
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
