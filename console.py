@@ -139,6 +139,18 @@ class HBNBCommand(cmd.Cmd):
                 if item[0: len(jesse[0])] == test:
                     count += 1
             print(count)
+        elif "update" in jesse[1]:
+            pos = jesse[1].find("(")
+            pos2 = jesse[1].find(",", pos + 1)
+            id = jesse[1][pos+1:pos2]
+            pos3 = pos2 + 2
+            pos4 = jesse[1].find(",", pos3 + 1)
+            attr = jesse[1][pos3:pos4]
+            pos5 = pos4 + 2
+            pos6 = jesse[1].find(")", pos5 + 1)
+            value = jesse[1][pos5:pos6]
+            test = "{} {} {} {}".format(jesse[0], id, attr, value)
+            self.do_update(test)
 
     def emptyline(self):
         """ignores an empty line"""
