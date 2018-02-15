@@ -130,6 +130,15 @@ class HBNBCommand(cmd.Cmd):
             id = jesse[1][pos+1:pos2]
             test = "{} {}".format(jesse[0], id)
             self.do_show(test)
+        elif "count" in jesse[1]:
+            store = FileStorage()
+            obj = store.all()
+            count = 0
+            test = "{}".format(jesse[0])
+            for item in obj:
+                if item[0: len(jesse[0])] == test:
+                    count += 1
+            print(count)
 
     def emptyline(self):
         """ignores an empty line"""
