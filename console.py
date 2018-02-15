@@ -113,6 +113,24 @@ class HBNBCommand(cmd.Cmd):
         print()
         return True
 
+    def default(self, arg):
+        """for unknown commands"""
+        jesse = arg.split(".")
+        if jesse[1] == "all()":
+            self.do_all(jesse[0])
+        elif "destroy" in jesse[1]:
+            pos = jesse[1].find("\"")
+            pos2 = jesse[1].find("\"", pos + 1)
+            id = jesse[1][pos+1:pos2]
+            test = "{} {}".format(jesse[0], id)
+            self.do_destroy(test)
+        elif "show" in jesse[1]:
+            pos = jesse[1].find("\"")
+            pos2 = jesse[1].find("\"", pos + 1)
+            id = jesse[1][pos+1:pos2]
+            test = "{} {}".format(jesse[0], id)
+            self.do_show(test)
+
     def emptyline(self):
         """ignores an empty line"""
         pass
