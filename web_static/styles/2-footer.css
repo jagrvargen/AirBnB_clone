@@ -8,9 +8,9 @@ footer {
     left:0;
     right:0;
     display:flex;
+    justify-content: center;
 }
 
-#foot {
+footer.foot {
     margin:auto;
-    justify-content:center;
 }

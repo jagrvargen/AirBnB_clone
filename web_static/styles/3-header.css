@@ -4,9 +4,10 @@ header {
     height:70px;
     width:100%;
     top:0;
-    left:20px;
     right:0;
-    position:absolute;
-    justify-content:center;
+    justify-content:left;
     border-bottom: 1px solid #CCCCCC;
+    background-image: url("../images/hbnb.png");
+    background-position: 20px;
+    background-repeat: no-repeat;
 }
