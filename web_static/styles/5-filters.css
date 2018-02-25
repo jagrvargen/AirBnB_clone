@@ -1,0 +1,43 @@
+.filters {
+    display:flex;
+    background-color:white;
+    width:20%;
+    align-items:center;
+    padding-right:30px;
+}
+
+.filters button {
+    font-size:18px;
+    background-color:#FF5A5F;
+    color:#FFFFFF;
+    height:48px;
+    border:none;
+    border-radius:4px;
+    justify-content:space-around;
+    width:100%;
+}
+
+.filters button:hover {
+    opacity:.9;
+}
+
+.amenities,
+.locations {
+    justify-content:center;
+    padding:0;
+    width:25%;
+    height:100%;
+}
+
+.locations {
+    border-right:1px solid #DDDDDD;
+}
+
+h3 {
+    font-weight:600;
+}
+
+h4 {
+    font-weight:400;
+    font-size:14px;
+}
