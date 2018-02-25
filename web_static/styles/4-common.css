@@ -11,7 +11,7 @@ body {
     max-width:1000px;
     margin-top:30px;
     margin-bottom:30px;
-    justify-content:space-around flex-start;
+    justify-content:center;
     border:1px solid #DDDDDD;
     border-radius:4px;
     height:70px;

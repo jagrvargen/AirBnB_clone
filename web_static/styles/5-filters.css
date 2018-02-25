@@ -1,9 +1,8 @@
 .filters {
     display:flex;
     background-color:white;
-    width:20%;
+    width:100%;
     align-items:center;
-    padding-right:30px;
 }
 
 .filters button {
@@ -13,8 +12,10 @@
     height:48px;
     border:none;
     border-radius:4px;
-    justify-content:space-around;
-    width:100%;
+    width:20%;
+    align-self:center;
+    margin-left:auto;
+    margin-right:30px;
 }
 
 .filters button:hover {
@@ -23,21 +24,27 @@
 
 .amenities,
 .locations {
-    justify-content:center;
-    padding:0;
+    justify-content:flex-start;
     width:25%;
     height:100%;
+    align-self:flex-start;
+    margin-left:auto;
+    margin-right:auto;
 }
 
 .locations {
     border-right:1px solid #DDDDDD;
+    margin-right:0px;
 }
 
-h3 {
+.locations h3,
+.amenities h3 {
     font-weight:600;
+    margin-bottom:0px;
 }
 
 h4 {
     font-weight:400;
     font-size:14px;
+    margin-top:0px;
 }
